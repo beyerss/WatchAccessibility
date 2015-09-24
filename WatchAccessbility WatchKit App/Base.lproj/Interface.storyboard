@@ -10,7 +10,7 @@
             <objects>
                 <controller title="Person" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchAccessbility_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group width="1" alignment="left" id="TLf-dX-GEp">
+                        <group width="1" alignment="left" isAccessibilityElement="YES" id="TLf-dX-GEp">
                             <items>
                                 <label alignment="left" text="Name:" id="SVo-ah-YPr">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle1"/>
@@ -21,7 +21,7 @@
                             </items>
                         </group>
                         <separator alignment="left" id="W5m-6d-0IJ"/>
-                        <group width="1" alignment="left" id="dt2-rp-mxK">
+                        <group width="1" alignment="left" isAccessibilityElement="YES" id="dt2-rp-mxK">
                             <items>
                                 <label alignment="left" text="Age:" id="gRP-pr-YPm">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle1"/>
@@ -32,7 +32,7 @@
                             </items>
                         </group>
                         <separator alignment="left" id="7ee-gD-vWx"/>
-                        <group width="1" alignment="left" id="gRP-9r-tXX">
+                        <group width="1" alignment="left" isAccessibilityElement="YES" id="gRP-9r-tXX">
                             <items>
                                 <label alignment="left" text="Weight:" id="goq-pi-67n">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle1"/>
