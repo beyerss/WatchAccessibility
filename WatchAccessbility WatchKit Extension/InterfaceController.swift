@@ -49,6 +49,7 @@ class InterfaceController: WKInterfaceController {
             currentPerson = people[0]
         }
         
+        // register for notification if VoiceOver is turned on or off while the app is running so that we can make the appropriate adjustments
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeGroupsIfNeeded"), name: WKAccessibilityVoiceOverStatusChanged, object: nil)
     }
 
@@ -56,25 +57,30 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+        // Adjust the screen based on VoiceOver
         resizeGroupsIfNeeded()
      
         // We should call update UI when this interface controller activates so that we know the suer is looking at the correct data
         updateUI()
         
+        // create the image region to make the favorite icon accessible
         let imageRegion = WKAccessibilityImageRegion()
         imageRegion.frame = CGRectMake(0, 0, 30, 30)
         imageRegion.label = "Favorite Person"
+        // set the image region on the icon
         favoriteIcon.setAccessibilityImageRegions([imageRegion])
     }
     
     func resizeGroupsIfNeeded() {
         let size: CGFloat
+        // Set size to be slightly bigger if VoiceOver is running
         if (WKAccessibilityIsVoiceOverRunning()) {
             size = 30
         } else {
             size = 20
         }
         
+        // adjust the height of each group
         nameGroup.setHeight(size)
         ageGroup.setHeight(size)
         weightGroup.setHeight(size)
@@ -124,6 +130,7 @@ class InterfaceController: WKInterfaceController {
         if let person = currentPerson where needsUpdate {
             nameLabel.setText(person.name)
             ageLabel.setText("\(person.age) yrs")
+            // Add an accessiblity label to ther person's age so that VoiceOver reads it different than it is on screen
             ageLabel.setAccessibilityLabel("\(person.age) years old")
             weightLabel.setText("\(person.weight) lbs")
             favoriteIcon.setHidden(!person.favorite)
