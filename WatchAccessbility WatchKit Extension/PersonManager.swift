@@ -36,7 +36,7 @@ class PersonManager: NSObject {
             return people
         } else {
             
-            let steve = Person(name: "Steve", age: 35, weight: 184)
+            let steve = Person(name: "Steve", age: 35, weight: 184, favorite: true)
             let mike = Person(name: "Mike", age: 27, weight: 203)
             let john = Person(name: "John", age: 43, weight: 248, favorite: true)
             let chris = Person(name: "Chris", age: 18, weight: 161)

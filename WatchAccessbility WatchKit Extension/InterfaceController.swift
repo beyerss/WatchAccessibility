@@ -13,8 +13,11 @@ class InterfaceController: WKInterfaceController {
     
     @IBOutlet var nameGroup: WKInterfaceGroup!
     @IBOutlet weak var nameLabel: WKInterfaceLabel!
+    @IBOutlet var ageGroup: WKInterfaceGroup!
     @IBOutlet weak var ageLabel: WKInterfaceLabel!
+    @IBOutlet var weightGroup: WKInterfaceGroup!
     @IBOutlet weak var weightLabel: WKInterfaceLabel!
+    @IBOutlet var favoriteIcon: WKInterfaceImage!
     
     var currentPerson: Person? {
         
@@ -40,24 +43,39 @@ class InterfaceController: WKInterfaceController {
         if (people.count > 0) {
             currentPerson = people[0]
         }
-    }
-
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
         
-        // Configure interface objects here.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeGroupsIfNeeded"), name: WKAccessibilityVoiceOverStatusChanged, object: nil)
     }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+        resizeGroupsIfNeeded()
         updateUI()
+        
+        let imageRegion = WKAccessibilityImageRegion()
+        imageRegion.frame = CGRectMake(0, 0, 30, 30)
+        imageRegion.label = "Favorite Person"
+        favoriteIcon.setAccessibilityImageRegions([imageRegion])
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    func resizeGroupsIfNeeded() {
+        let size: CGFloat
+        if (WKAccessibilityIsVoiceOverRunning()) {
+            size = 30
+        } else {
+            size = 20
+        }
+        
+        nameGroup.setHeight(size)
+        ageGroup.setHeight(size)
+        weightGroup.setHeight(size)
     }
     
     @IBAction func showRandomPerson() {
@@ -91,8 +109,10 @@ class InterfaceController: WKInterfaceController {
     func updateUI() {
         if let person = currentPerson where needsUpdate {
             nameLabel.setText(person.name)
-            ageLabel.setText("\(person.age)")
+            ageLabel.setText("\(person.age) yrs")
+            ageLabel.setAccessibilityLabel("\(person.age) years old")
             weightLabel.setText("\(person.weight) lbs")
+            favoriteIcon.setHidden(!person.favorite)
         }
     }
     
