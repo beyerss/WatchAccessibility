@@ -13,8 +13,11 @@ class InterfaceController: WKInterfaceController {
     
     @IBOutlet var nameGroup: WKInterfaceGroup!
     @IBOutlet weak var nameLabel: WKInterfaceLabel!
+    @IBOutlet var ageGroup: WKInterfaceGroup!
     @IBOutlet weak var ageLabel: WKInterfaceLabel!
+    @IBOutlet var weightGroup: WKInterfaceGroup!
     @IBOutlet weak var weightLabel: WKInterfaceLabel!
+    @IBOutlet var favoriteIcon: WKInterfaceImage!
     
     var currentPerson: Person? {
         
@@ -91,8 +94,9 @@ class InterfaceController: WKInterfaceController {
     func updateUI() {
         if let person = currentPerson where needsUpdate {
             nameLabel.setText(person.name)
-            ageLabel.setText("\(person.age)")
+            ageLabel.setText("\(person.age) yrs")
             weightLabel.setText("\(person.weight) lbs")
+            favoriteIcon.setHidden(!person.favorite)
         }
     }
     
