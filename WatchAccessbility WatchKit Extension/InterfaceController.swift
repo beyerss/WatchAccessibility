@@ -65,7 +65,7 @@ class InterfaceController: WKInterfaceController {
         
         // create the image region to make the favorite icon accessible
         let imageRegion = WKAccessibilityImageRegion()
-        imageRegion.frame = CGRectMake(0, 0, 30, 30)
+        imageRegion.frame = CGRectMake(WKInterfaceDevice.currentDevice().screenBounds.width - 30, 20, 30, 30)
         imageRegion.label = "Favorite Person"
         // set the image region on the icon
         favoriteIcon.setAccessibilityImageRegions([imageRegion])

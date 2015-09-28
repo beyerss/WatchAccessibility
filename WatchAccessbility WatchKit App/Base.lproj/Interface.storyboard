@@ -10,6 +10,7 @@
             <objects>
                 <controller title="Person" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchAccessbility_WatchKit_App" customModuleProvider="target">
                     <items>
+                        <imageView width="30" height="30" alignment="right" image="favorite" id="Gb2-xG-wlI"/>
                         <group width="1" height="20" alignment="left" isAccessibilityElement="YES" id="TLf-dX-GEp">
                             <items>
                                 <label alignment="left" verticalAlignment="center" text="Name:" id="SVo-ah-YPr">
@@ -43,7 +44,6 @@
                             </items>
                         </group>
                         <button alignment="right" hidden="YES" title="Favorite" id="nBA-Ci-yz1"/>
-                        <imageView width="30" height="30" alignment="right" image="favorite" id="Gb2-xG-wlI"/>
                         <button width="1" alignment="left" verticalAlignment="bottom" title="New Person" id="gEc-Y0-8dI">
                             <connections>
                                 <segue destination="Dqt-yz-zxA" kind="modal" id="Kbf-iu-R5n"/>
